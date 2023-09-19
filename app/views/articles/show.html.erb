@@ -1,0 +1,20 @@
+<h2>Comentarios</h2>
+<% @comments.each do |comment| %>
+  <p><strong><%= comment.user.email %>:</strong> <%= comment.content %></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= form_for([@article, @comment]) do |f| %>
+    <div class="field">
+      <%= f.label :content %>
+      <%= f.text_area :content, rows: 4 %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Agregar comentario' %>
+    </div>
+  <% end %>
+<% else %>
+  <p>Por favor, inicia sesión para comentar.</p>
+<% end %>
+<%= link_to 'Volver al artículo', article_path(@article) %>
+<%= link_to 'Volver al menú principal', root_path %>

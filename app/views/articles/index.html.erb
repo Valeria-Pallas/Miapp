@@ -1,0 +1,25 @@
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://media.istockphoto.com/id/1270839889/fr/photo/livre-ouvert-et-ordinateur-portable-dans-la-biblioth%C3%A8que.jpg?s=1024x1024&w=is&k=20&c=3ck8MCcUefmalpQdKRyrRlw421UGW7yY0q7kZl6RQY4=);">
+  <div class="container">
+    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+    <p>Change your life and learn to code at one of our campuses around the world.</p>
+    <a class="btn btn-flat" href="<%= new_article_path %>" class="btn btn-primary">Discover</a>
+  </div>
+</div>
+
+<h1>Lista de Artículos</h1>
+<div class="cards">
+<% @articles.each do |article| %>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))", <%= link_to article.banner_url, article %>>
+  <h2><%= link_to article.title, article %></h2>
+  <p><%= article.content.truncate(200) %></p>
+    <p>Escrito por: <%= article.user.email %></p>
+    <% if user_signed_in? && current_user == article.user %>
+      <%= link_to 'Eliminar artículo', article_path(article), method: :delete, data: { confirm: '¿Estás seguro de que deseas eliminar este artículo?' }, class: 'btn btn-danger' %>
+    <% end %>
+    <hr>
+  <% end %>
+  </div>
+
+<%= link_to 'Crear un nuevo artículo', new_article_path, class: 'btn btn-primary' %>
+<br>
