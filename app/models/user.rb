@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy # Esto establece la asociación entre User y Article
   has_many :comments
 
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 end
