@@ -4,9 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_secure_password
   has_many :articles, dependent: :destroy # Esto establece la asociación entre User y Article
   has_many :comments
-
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 end
